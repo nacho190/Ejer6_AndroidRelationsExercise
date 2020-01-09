@@ -40,7 +40,18 @@
             <Button
                 android:text="ok"
                 android:id="@+id/ok" />
-        </GridLayout>      
-       
+        </GridLayout>
+        <TextView
+            android:text="Text"
+            android:layout_width="match_parent"
+            android:layout_height="34.0dp"
+            android:textSize = "50px"
+            android:id="@+id/textomensaje" />
+        <Button
+            android:text="Mensaje"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/mensaje" />      
+            
     </LinearLayout>
 </android.support.design.widget.CoordinatorLayout>

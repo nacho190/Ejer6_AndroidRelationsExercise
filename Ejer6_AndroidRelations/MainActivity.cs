@@ -2,15 +2,11 @@
 using System.Collections.Generic;
 using Android.App;
 using Android.OS;
-using Android.Runtime;
 using Android.Support.Design.Widget;
-using Android.Support.V4.App;
 using Android.Support.V4.View;
 using Android.Support.V7.App;
-using Android.Views;
 using Android.Widget;
-using Fragment = Android.Support.V4.App.Fragment;
-using FragmentManager = Android.Support.V4.App.FragmentManager;
+using Toolbar = Android.Support.V7.Widget.Toolbar;
 
 namespace Ejer6_AndroidRelations
 {
@@ -22,9 +18,11 @@ namespace Ejer6_AndroidRelations
         Button boton2;
         Button boton3;
         Button boton4;
+        Button botonMensaje;
         Button check;
-     
+        TextView textomensaje;   
         ViewPager viewpager;
+ 
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -34,7 +32,7 @@ namespace Ejer6_AndroidRelations
 
         }
         
-        void setupViewPager(Android.Support.V4.View.ViewPager viewPager)
+        void setupViewPager(ViewPager viewPager)
         {
             var adapter = new Adapter(SupportFragmentManager);
             adapter.AddFragment(new TabFragment1(), "Nombre");
@@ -53,12 +51,24 @@ namespace Ejer6_AndroidRelations
             boton3 = FindViewById<Button>(Resource.Id.tres);
             boton4 = FindViewById<Button>(Resource.Id.cuatro);
             check = FindViewById<Button>(Resource.Id.ok);
+            botonMensaje = FindViewById<Button>(Resource.Id.mensaje);
+            textomensaje = FindViewById<TextView>(Resource.Id.textomensaje);
 
             boton1.Click += Cambiotexto;
             boton2.Click += Cambiotexto;
             boton3.Click += Cambiotexto;
             boton4.Click += Cambiotexto;
             check.Click += Validar;
+            botonMensaje.Click += Mensaje;
+        }
+        public void Mensaje(object sender, EventArgs e)
+        {
+            textomensaje.Text = "Hola Chema!";
+            Toast.MakeText(Application.Context, "Hola Chema!", ToastLength.Short).Show();
+        }
+        public void Registrar(object sender, EventArgs e)
+        {
+            
         }
         public void Validar(object sender, EventArgs e)
         {
@@ -70,10 +80,20 @@ namespace Ejer6_AndroidRelations
             {
                 SetContentView(Resource.Layout.content_main);
 
-                viewpager = FindViewById<Android.Support.V4.View.ViewPager>(Resource.Id.viewpager);
+                viewpager = FindViewById<ViewPager>(Resource.Id.viewpager);
+
+                var toolbar = FindViewById<Toolbar>(Resource.Id.toolbar);
+
+                SetSupportActionBar(toolbar);
+
+                SupportActionBar.SetIcon(Resource.Mipmap.fesac);
+
+                SupportActionBar.SetDisplayShowTitleEnabled(false);
+
                 setupViewPager(viewpager);
-                var tabLayout = FindViewById<TabLayout>(Resource.Id.tabLayout1);
+                var tabLayout = FindViewById<TabLayout>(Resource.Id.tabs);
                 tabLayout.SetupWithViewPager(viewpager);
+
             }
         }
         public void Cambiotexto(object sender, EventArgs e)
@@ -82,37 +102,5 @@ namespace Ejer6_AndroidRelations
             texto.Text += boton.Text; ;
         }
     }
-    
-    class Adapter : Android.Support.V4.App.FragmentPagerAdapter
-    {
-        List<Fragment> fragments = new List<Fragment>();
-        List<string> fragmentTitles = new List<string>();
-
-
-        public Adapter(FragmentManager fm) : base(fm)
-        {
-        }
-
-        public void AddFragment(Fragment fragment, String title)
-        {
-            fragments.Add(fragment);
-            fragmentTitles.Add(title);
-        }
-
-        public override Fragment GetItem(int position)
-        {
-            return fragments[position];
-        }
-
-        public override int Count
-        {
-            get { return fragments.Count; }
-        }
-
-        public override Java.Lang.ICharSequence GetPageTitleFormatted(int position)
-        {
-            return new Java.Lang.String(fragmentTitles[position]);
-        }       
-    } 
 }
 
