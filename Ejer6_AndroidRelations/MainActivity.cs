@@ -24,35 +24,27 @@ namespace Ejer6_AndroidRelations
         Button boton4;
         Button check;
      
-       // ViewPager viewpager;
+        ViewPager viewpager;
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-            // Set our view from the "main" layout resource
+            //Set our view from the "main" layout resource
             SetContentView(Resource.Layout.activity_main);
             Binding();
-           // viewpager = FindViewById<Android.Support.V4.View.ViewPager>(Resource.Id.viewpager);
-
-
-            //setupViewPager(viewpager);
-           // var tabLayout = FindViewById<TabLayout>(Resource.Id.tabLayout1);
-           // tabLayout.SetupWithViewPager(viewpager);
-
 
         }
-        /*
+        
         void setupViewPager(Android.Support.V4.View.ViewPager viewPager)
         {
             var adapter = new Adapter(SupportFragmentManager);
             adapter.AddFragment(new TabFragment1(), "Nombre");
             adapter.AddFragment(new TabFragment2(), "Listado");
+            
             viewPager.Adapter = adapter;
             viewpager.Adapter.NotifyDataSetChanged();
             //viewpager.OffscreenPageLimit(4);
-
-
         }
-        */
+        
         private void Binding()
         {
             texto = FindViewById<EditText>(Resource.Id.textInputEditText1);
@@ -63,9 +55,9 @@ namespace Ejer6_AndroidRelations
             check = FindViewById<Button>(Resource.Id.ok);
 
             boton1.Click += Cambiotexto;
-            boton2.Click += Cambiotexto1;
-            boton3.Click += Cambiotexto2;
-            boton4.Click += Cambiotexto3;
+            boton2.Click += Cambiotexto;
+            boton3.Click += Cambiotexto;
+            boton4.Click += Cambiotexto;
             check.Click += Validar;
         }
         public void Validar(object sender, EventArgs e)
@@ -77,30 +69,20 @@ namespace Ejer6_AndroidRelations
             else
             {
                 SetContentView(Resource.Layout.content_main);
+
+                viewpager = FindViewById<Android.Support.V4.View.ViewPager>(Resource.Id.viewpager);
+                setupViewPager(viewpager);
+                var tabLayout = FindViewById<TabLayout>(Resource.Id.tabLayout1);
+                tabLayout.SetupWithViewPager(viewpager);
             }
         }
         public void Cambiotexto(object sender, EventArgs e)
         {
-
-            texto.Text += "1";
-        }
-        public void Cambiotexto1(object sender, EventArgs e)
-        {
-
-            texto.Text = texto.Text + "2";
-        }
-        public void Cambiotexto2(object sender, EventArgs e)
-        {
-
-            texto.Text = texto.Text + "3";
-        }
-        public void Cambiotexto3(object sender, EventArgs e)
-        {
-
-            texto.Text = texto.Text + "4";
+            var boton = (Button)sender;
+            texto.Text += boton.Text; ;
         }
     }
-    /*
+    
     class Adapter : Android.Support.V4.App.FragmentPagerAdapter
     {
         List<Fragment> fragments = new List<Fragment>();
@@ -115,14 +97,11 @@ namespace Ejer6_AndroidRelations
         {
             fragments.Add(fragment);
             fragmentTitles.Add(title);
-
-
         }
 
         public override Fragment GetItem(int position)
         {
             return fragments[position];
-
         }
 
         public override int Count
@@ -133,10 +112,7 @@ namespace Ejer6_AndroidRelations
         public override Java.Lang.ICharSequence GetPageTitleFormatted(int position)
         {
             return new Java.Lang.String(fragmentTitles[position]);
-        }
-
-
-    }
-    */
+        }       
+    } 
 }
 
