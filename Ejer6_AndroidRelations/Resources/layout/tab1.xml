@@ -21,4 +21,24 @@
         android:layout_width="300px"
         android:layout_height="wrap_content"
         android:id="@+id/okname" />
+    <RadioGroup
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:layout_width="208.5dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/sexo">
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="Hombre"
+            android:id="@+id/hombre" />
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Mujer"
+            android:id="@+id/mujer" />
+      
+    </RadioGroup>
+
 </LinearLayout>

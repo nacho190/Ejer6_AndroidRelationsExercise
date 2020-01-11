@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using Android.App;
+using Android.Content;
 using Android.OS;
 using Android.Support.Design.Widget;
 using Android.Support.V4.View;
 using Android.Support.V7.App;
+using Android.Views;
 using Android.Widget;
 using Toolbar = Android.Support.V7.Widget.Toolbar;
 
@@ -29,9 +31,10 @@ namespace Ejer6_AndroidRelations
             //Set our view from the "main" layout resource
             SetContentView(Resource.Layout.activity_main);
             Binding();
+            retrieveset();
 
         }
-        
+
         void setupViewPager(ViewPager viewPager)
         {
             var adapter = new Adapter(SupportFragmentManager);
@@ -42,7 +45,39 @@ namespace Ejer6_AndroidRelations
             viewpager.Adapter.NotifyDataSetChanged();
             //viewpager.OffscreenPageLimit(4);
         }
-        
+
+        protected void saveset(){
+        //store
+        var prefs = Application.Context.GetSharedPreferences("Archivo", FileCreationMode.Private);
+        var prefEditor = prefs.Edit();
+        prefEditor.PutString("cadena", "iniciado");
+        prefEditor.Commit();
+        }
+
+    // Function called from OnCreate
+        protected void retrieveset()
+        {
+        //retreive 
+        var prefs = Application.Context.GetSharedPreferences("Archivo", FileCreationMode.Private);              
+        var somePref = prefs.GetString("cadena", "");
+            if (somePref.Equals("iniciado"))
+            {
+                SetContentView(Resource.Layout.content_main);
+                viewpager = FindViewById<ViewPager>(Resource.Id.viewpager);
+
+                var toolbar = FindViewById<Toolbar>(Resource.Id.toolbar);
+
+                SetSupportActionBar(toolbar);
+
+                SupportActionBar.SetIcon(Resource.Mipmap.fesac);
+
+                SupportActionBar.SetDisplayShowTitleEnabled(false);
+
+                setupViewPager(viewpager);
+                var tabLayout = FindViewById<TabLayout>(Resource.Id.tabs);
+                tabLayout.SetupWithViewPager(viewpager);
+            }
+        }
         private void Binding()
         {
             texto = FindViewById<EditText>(Resource.Id.textInputEditText1);
@@ -78,6 +113,7 @@ namespace Ejer6_AndroidRelations
             }
             else
             {
+                saveset();
                 SetContentView(Resource.Layout.content_main);
 
                 viewpager = FindViewById<ViewPager>(Resource.Id.viewpager);
