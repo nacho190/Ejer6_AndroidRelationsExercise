@@ -1,14 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using Android.App;
 using Android.Content;
 using Android.OS;
-using Android.Support.Design.Widget;
-using Android.Support.V4.View;
 using Android.Support.V7.App;
-using Android.Views;
 using Android.Widget;
-using Toolbar = Android.Support.V7.Widget.Toolbar;
+
 
 namespace Ejer6_AndroidRelations
 {
@@ -23,30 +19,17 @@ namespace Ejer6_AndroidRelations
         Button botonMensaje;
         Button check;
         TextView textomensaje;   
-        ViewPager viewpager;
- 
+       
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
             //Set our view from the "main" layout resource
             SetContentView(Resource.Layout.activity_main);
             Binding();
-            retrieveset();
-
+            Retrieveset();
         }
 
-        void setupViewPager(ViewPager viewPager)
-        {
-            var adapter = new Adapter(SupportFragmentManager);
-            adapter.AddFragment(new TabFragment1(), "Nombre");
-            adapter.AddFragment(new TabFragment2(), "Listado");
-            
-            viewPager.Adapter = adapter;
-            viewpager.Adapter.NotifyDataSetChanged();
-            //viewpager.OffscreenPageLimit(4);
-        }
-
-        protected void saveset(){
+        protected void Saveset(){
         //store
         var prefs = Application.Context.GetSharedPreferences("Archivo", FileCreationMode.Private);
         var prefEditor = prefs.Edit();
@@ -55,27 +38,14 @@ namespace Ejer6_AndroidRelations
         }
 
     // Function called from OnCreate
-        protected void retrieveset()
+        protected void Retrieveset()
         {
         //retreive 
         var prefs = Application.Context.GetSharedPreferences("Archivo", FileCreationMode.Private);              
         var somePref = prefs.GetString("cadena", "");
             if (somePref.Equals("iniciado"))
             {
-                SetContentView(Resource.Layout.content_main);
-                viewpager = FindViewById<ViewPager>(Resource.Id.viewpager);
-
-                var toolbar = FindViewById<Toolbar>(Resource.Id.toolbar);
-
-                SetSupportActionBar(toolbar);
-
-                SupportActionBar.SetIcon(Resource.Mipmap.fesac);
-
-                SupportActionBar.SetDisplayShowTitleEnabled(false);
-
-                setupViewPager(viewpager);
-                var tabLayout = FindViewById<TabLayout>(Resource.Id.tabs);
-                tabLayout.SetupWithViewPager(viewpager);
+                StartActivity(typeof(ContentActivity));
             }
         }
         private void Binding()
@@ -96,15 +66,13 @@ namespace Ejer6_AndroidRelations
             check.Click += Validar;
             botonMensaje.Click += Mensaje;
         }
+
         public void Mensaje(object sender, EventArgs e)
         {
             textomensaje.Text = "Hola Chema!";
             Toast.MakeText(Application.Context, "Hola Chema!", ToastLength.Short).Show();
         }
-        public void Registrar(object sender, EventArgs e)
-        {
-            
-        }
+
         public void Validar(object sender, EventArgs e)
         {
             if (texto.Text != "1234")
@@ -113,22 +81,8 @@ namespace Ejer6_AndroidRelations
             }
             else
             {
-                saveset();
-                SetContentView(Resource.Layout.content_main);
-
-                viewpager = FindViewById<ViewPager>(Resource.Id.viewpager);
-
-                var toolbar = FindViewById<Toolbar>(Resource.Id.toolbar);
-
-                SetSupportActionBar(toolbar);
-
-                SupportActionBar.SetIcon(Resource.Mipmap.fesac);
-
-                SupportActionBar.SetDisplayShowTitleEnabled(false);
-
-                setupViewPager(viewpager);
-                var tabLayout = FindViewById<TabLayout>(Resource.Id.tabs);
-                tabLayout.SetupWithViewPager(viewpager);
+                Saveset();
+                StartActivity(typeof(ContentActivity));
 
             }
         }

@@ -14,7 +14,7 @@ namespace Ejer6_AndroidRelations
 {
     class persona
     {
-        string nombre { get; set; }
-        string apellido { get; set; }
+        public string nombre { get; set; }
+        public string apellido { get; set; }
     }
 }

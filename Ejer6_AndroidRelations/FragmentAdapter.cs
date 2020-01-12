@@ -15,13 +15,13 @@ using FragmentManager = Android.Support.V4.App.FragmentManager;
 
 namespace Ejer6_AndroidRelations
 {
-    class Adapter : FragmentPagerAdapter
+    class FragmentAdapter : FragmentPagerAdapter
     {
         List<Fragment> fragments = new List<Fragment>();
         List<string> fragmentTitles = new List<string>();
 
 
-        public Adapter(FragmentManager fm) : base(fm)
+        public FragmentAdapter(FragmentManager fm) : base(fm)
         {
         }
 
