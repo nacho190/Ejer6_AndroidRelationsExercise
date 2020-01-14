@@ -33,13 +33,13 @@ namespace Ejer6_AndroidRelations
 
             SupportActionBar.SetDisplayShowTitleEnabled(false);
 
-            setupViewPager(viewpager);
+            SetupViewPager(viewpager);
             var tabLayout = FindViewById<TabLayout>(Resource.Id.tabs);
 
             tabLayout.SetupWithViewPager(viewpager);
 
         }
-        void setupViewPager(ViewPager viewPager)
+        void SetupViewPager(ViewPager viewPager)
         {
             var adapter = new FragmentAdapter(SupportFragmentManager);
             adapter.AddFragment(new TabFragment1(), "Nombre");

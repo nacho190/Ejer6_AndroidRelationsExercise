@@ -15,8 +15,8 @@ namespace Ejer6_AndroidRelations
     public class TabFragment1 : Android.Support.V4.App.Fragment
     {
 
-        EditText nom;
-        EditText ape;
+        EditText EditTextnom;
+        EditText EditTextape;
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
@@ -25,8 +25,8 @@ namespace Ejer6_AndroidRelations
 
             var v = inflater.Inflate(Resource.Layout.tab1, container, false);
 
-            nom = v.FindViewById<EditText>(Resource.Id.nombre);
-            ape = v.FindViewById<EditText>(Resource.Id.apellido);
+            EditTextnom = v.FindViewById<EditText>(Resource.Id.nombre);
+            EditTextape = v.FindViewById<EditText>(Resource.Id.apellido);
 
             Button b = v.FindViewById<Button>(Resource.Id.okname);
             b.Click += Agregar;
@@ -34,10 +34,14 @@ namespace Ejer6_AndroidRelations
            
             return v;
         }
+        public override void OnResume()
+        {
+            base.OnResume();
+            
+        }
         void Agregar(object sender, EventArgs e)
         {
-
-
+            ServicioLista.Instance.MyList.Add(new Persona() { nombre = EditTextnom.Text, apellido = EditTextape.Text });
         }
     }
 }

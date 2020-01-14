@@ -12,18 +12,18 @@ using Android.Widget;
 
 namespace Ejer6_AndroidRelations
 {
-    class ListViewAdapter : BaseAdapter<persona>
+    class ListViewAdapter : BaseAdapter<Persona>
     {
-        public List<persona> miItems;
+        public List<Persona> miItems;
         private Context miContext;
 
-        public ListViewAdapter(Context context, List<persona> items)
+        public ListViewAdapter(Context context, List<Persona> items)
         {
             miItems = items;
             miContext = context;
         }
 
-        public override persona this[int position]
+        public override Persona this[int position]
         {
             get { return miItems[position]; }
         }
