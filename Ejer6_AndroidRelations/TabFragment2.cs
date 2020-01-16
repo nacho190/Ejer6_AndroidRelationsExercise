@@ -22,14 +22,11 @@ namespace Ejer6_AndroidRelations
             var v = inflater.Inflate(Resource.Layout.tab2, container, false);
             
             var milistview = v.FindViewById<ListView>(Resource.Id.lista);
-
-            ServicioLista.Instance.MyList.Add(new Persona() { nombre = "Nacho", apellido = "Limon" });
-            ServicioLista.Instance.MyList.Add(new Persona() { nombre = "Ana", apellido = "Muñoz" });
-            ServicioLista.Instance.MyList.Add(new Persona() { nombre = "Pepe", apellido = "Perez" });
             
-
             ListViewAdapter adapter = new ListViewAdapter(this.Context, ServicioLista.Instance.MyList);
             milistview.Adapter = adapter;
+
+            adapter.NotifyDataSetChanged();
             
             return v;
 

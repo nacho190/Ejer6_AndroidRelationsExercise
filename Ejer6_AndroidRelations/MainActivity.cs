@@ -8,7 +8,7 @@ using Android.Widget;
 
 namespace Ejer6_AndroidRelations
 {
-    [Activity(Label = "@string/app_name", Theme = "@style/AppTheme.NoActionBar", MainLauncher = true)]
+    [Activity(Label = "@string/app_name", Theme = "@style/AppTheme.NoActionBar", MainLauncher = true, NoHistory = true)]
     public class MainActivity : AppCompatActivity
     {
         EditText texto;
@@ -83,14 +83,15 @@ namespace Ejer6_AndroidRelations
             {
                 Saveset();
                 StartActivity(typeof(ContentActivity));
-
             }
         }
+
         public void Cambiotexto(object sender, EventArgs e)
         {
             var boton = (Button)sender;
             texto.Text += boton.Text; ;
         }
+      
     }
 }
 

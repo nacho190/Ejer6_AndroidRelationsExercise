@@ -5,13 +5,8 @@ using System.Text;
 using Android.Support.Design.Widget;
 using Android.Support.V4.View;
 using Android.Support.V7.App;
-using Android.App;
-using Android.Content;
-using Android.OS;
-using Android.Runtime;
 
-using Android.Views;
-using Android.Widget;
+using Android.OS;
 using Toolbar = Android.Support.V7.Widget.Toolbar;
 namespace Ejer6_AndroidRelations
 {
@@ -29,7 +24,7 @@ namespace Ejer6_AndroidRelations
 
             SetSupportActionBar(toolbar);
 
-            SupportActionBar.SetIcon(Resource.Mipmap.fesac);
+            SupportActionBar.SetLogo(Resource.Drawable.fesac);
 
             SupportActionBar.SetDisplayShowTitleEnabled(false);
 

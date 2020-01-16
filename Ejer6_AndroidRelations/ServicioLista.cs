@@ -14,27 +14,26 @@ namespace Ejer6_AndroidRelations
 {
     class ServicioLista
     {
-        
-            private static ServicioLista _instance = new ServicioLista();
-            
-            protected ServicioLista()
-            {
-            }
 
-            public static ServicioLista Instance
+        private static ServicioLista _instance = new ServicioLista();
+
+        protected ServicioLista()
+        {
+           
+        }
+
+        public static ServicioLista Instance
+        {
+            get
             {
-                get
-                {
-                   if(_instance == null)
+                if (_instance == null)
                 {
                     _instance = new ServicioLista();
                 }
                 return _instance;
-                }
             }
+        }
 
         public List<Persona> MyList = new List<Persona>();
-       
-
     }
 }

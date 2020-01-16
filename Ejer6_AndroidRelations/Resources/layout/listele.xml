@@ -18,5 +18,10 @@
             android:layout_width="200px"
             android:layout_height="wrap_content"
             android:id="@+id/textView2" />
+        <TextView
+            android:text="sexo"
+            android:layout_width="200px"
+            android:layout_height="wrap_content"
+            android:id="@+id/textView3" />
 
 </LinearLayout>
