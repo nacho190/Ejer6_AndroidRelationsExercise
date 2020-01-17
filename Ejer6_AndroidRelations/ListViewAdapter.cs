@@ -51,6 +51,8 @@ namespace Ejer6_AndroidRelations
             apellido.Text = miItems[position].apellido;
             TextView sexo = row.FindViewById<TextView>(Resource.Id.textView3);
             sexo.Text = miItems[position].sexo;
+            TextView id = row.FindViewById<TextView>(Resource.Id.textView4);
+            id.Text = ""+miItems[position].id;
 
             return row;
         }

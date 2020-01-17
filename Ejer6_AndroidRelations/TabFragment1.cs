@@ -23,7 +23,7 @@ namespace Ejer6_AndroidRelations
         {
 
             v = inflater.Inflate(Resource.Layout.tab1, container, false);
-
+            ServicioLista.Instance.MyList.Clear();
             Binding();
             Connectionbd();
             AddPeople();
@@ -56,7 +56,7 @@ namespace Ejer6_AndroidRelations
 
             if (db.Table<Persona>().Count() == 0)
             {
-                db.Insert(new Persona() { nombre = "Nacho", apellido = "Limon", sexo = "Hombre" });
+                db.Insert(new Persona() { nombre = "Nacho", apellido = "Limon", sexo = "Hombre" }) ;
                 db.Insert(new Persona() { nombre = "Ana", apellido = "Muñoz", sexo = "Mujer" });
                 db.Insert(new Persona() { nombre = "Pepe", apellido = "Perez", sexo = "Hombre" });
             }
@@ -94,7 +94,7 @@ namespace Ejer6_AndroidRelations
 
             if (db.Table<Persona>().Count() > 0)
             {
-                Toast.MakeText(Application.Context, $"El item con la pk 1 es: {db.Get<Persona>(1).nombre}", ToastLength.Short).Show();
+                Toast.MakeText(Application.Context, $"El item con la pk 1 es: {db.Get<Persona>(1).nombre} y el numero de items son {db.Table<Persona>().Count()}", ToastLength.Short).Show();
             }
             else
             {
